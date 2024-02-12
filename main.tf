@@ -18,5 +18,5 @@ resource "aws_appmesh_mesh" "this" {
     }
   }
 
-  tags = var.tags
+  tags = local.tags
 }
