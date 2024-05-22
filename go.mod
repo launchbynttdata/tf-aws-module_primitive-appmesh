@@ -1,9 +1,9 @@
-module github.com/nexient-llc/tf-aws-module-appmesh
+module github.com/launchbynttdata/tf-aws-module_primitive-appmesh
 
 go 1.20
 
 require (
-	github.com/nexient-llc/lcaf-component-terratest-common v0.0.0-20240126002307-4fd81b54916a
+	github.com/launchbynttdata/lcaf-component-terratest v1.0.4
 	github.com/stretchr/testify v1.8.1
 )
 
