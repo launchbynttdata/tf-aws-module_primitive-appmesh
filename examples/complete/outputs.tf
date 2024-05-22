@@ -19,3 +19,8 @@ output "arn" {
   description = "ARN of the service mesh"
   value       = module.appmesh.arn
 }
+
+output "name" {
+  description = "Name of the service mesh."
+  value       = module.appmesh.name
+}

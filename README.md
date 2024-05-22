@@ -135,7 +135,7 @@ Currently, the `encrypt at transit` is not supported in terraform. There is an o
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.67.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.50.0 |
 
 ## Modules
 
@@ -161,4 +161,5 @@ No modules.
 |------|-------------|
 | <a name="output_id"></a> [id](#output\_id) | ID of the service mesh. |
 | <a name="output_arn"></a> [arn](#output\_arn) | ARN of the service mesh |
+| <a name="output_name"></a> [name](#output\_name) | Name of the service mesh. |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

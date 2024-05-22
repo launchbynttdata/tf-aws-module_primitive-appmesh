@@ -35,4 +35,5 @@ No resources.
 |------|-------------|
 | <a name="output_id"></a> [id](#output\_id) | ID of the service mesh. |
 | <a name="output_arn"></a> [arn](#output\_arn) | ARN of the service mesh |
+| <a name="output_name"></a> [name](#output\_name) | Name of the service mesh. |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

@@ -1,30 +1,35 @@
 package common
 
 import (
+	"context"
 	"testing"
 
+	"github.com/aws/aws-sdk-go-v2/aws"
+	"github.com/aws/aws-sdk-go-v2/config"
+	"github.com/aws/aws-sdk-go-v2/service/appmesh"
+	"github.com/gruntwork-io/terratest/modules/terraform"
 	"github.com/launchbynttdata/lcaf-component-terratest/types"
-	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
-func TestComposableComplete(t *testing.T, ctx types.TestContext) {
-	t.Run("TestAlwaysSucceeds", func(t *testing.T) {
-		assert.Equal(t, "foo", "foo", "Should always be the same!")
-		assert.NotEqual(t, "foo", "bar", "Should never be the same!")
-	})
+func TestComplete(t *testing.T, ctx types.TestContext) {
+	appmeshClient := appmesh.NewFromConfig(GetAWSConfig(t))
+	meshName := terraform.Output(t, ctx.TerratestTerraformOptions(), "name")
+	meshArn := terraform.Output(t, ctx.TerratestTerraformOptions(), "arn")
 
-	// Implement your own tests below this line. See the README.md file
-	// at https://github.com/launchbynttdata/lcaf-component-terratest
-	// for more details on writing tests.
+	t.Run("TestDoesMeshExist", func(t *testing.T) {
+		output, err := appmeshClient.DescribeMesh(context.TODO(), &appmesh.DescribeMeshInput{MeshName: &meshName})
+		if err != nil {
+			t.Errorf("Error describing mesh: %v", err)
+		}
+
+		require.Equal(t, meshName, *output.Mesh.MeshName, "Expected mesh name to be %s, but got %s", meshName, *output.Mesh.MeshName)
+		require.Equal(t, meshArn, *output.Mesh.Metadata.Arn, "Expected mesh ARN to be %s, but got %s", meshArn, *output.Mesh.Metadata.Arn)
+	})
 }
 
-func TestComplete(t *testing.T, ctx types.TestContext) {
-	t.Run("TestAlwaysSucceeds", func(t *testing.T) {
-		assert.Equal(t, "foo", "foo", "Should always be the same!")
-		assert.NotEqual(t, "foo", "bar", "Should never be the same!")
-	})
-
-	// Implement your own tests below this line. See the README.md file
-	// at https://github.com/launchbynttdata/lcaf-component-terratest
-	// for more details on writing tests.
+func GetAWSConfig(t *testing.T) (cfg aws.Config) {
+	cfg, err := config.LoadDefaultConfig(context.TODO())
+	require.NoErrorf(t, err, "unable to load SDK config, %v", err)
+	return cfg
 }

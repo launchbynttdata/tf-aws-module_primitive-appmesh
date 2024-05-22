@@ -19,3 +19,8 @@ output "arn" {
   description = "ARN of the service mesh"
   value       = aws_appmesh_mesh.this.arn
 }
+
+output "name" {
+  description = "Name of the service mesh."
+  value       = aws_appmesh_mesh.this.name
+}
