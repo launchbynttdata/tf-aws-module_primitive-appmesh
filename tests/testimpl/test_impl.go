@@ -12,7 +12,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestComplete(t *testing.T, ctx types.TestContext) {
+func TestComposableComplete(t *testing.T, ctx types.TestContext) {
 	appmeshClient := appmesh.NewFromConfig(GetAWSConfig(t))
 	meshName := terraform.Output(t, ctx.TerratestTerraformOptions(), "name")
 	meshArn := terraform.Output(t, ctx.TerratestTerraformOptions(), "arn")

@@ -20,5 +20,5 @@ func TestModule(t *testing.T) {
 		SetTestConfigFileName(infraTFVarFileNameDefault).
 		Build()
 
-	lib.RunNonDestructiveTest(t, *ctx, testimpl.TestComplete)
+	lib.RunNonDestructiveTest(t, *ctx, testimpl.TestComposableComplete)
 }
