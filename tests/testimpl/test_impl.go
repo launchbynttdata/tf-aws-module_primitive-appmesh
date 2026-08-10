@@ -14,8 +14,8 @@ import (
 
 func TestComposableComplete(t *testing.T, ctx types.TestContext) {
 	appmeshClient := appmesh.NewFromConfig(GetAWSConfig(t))
-	meshName := terraform.Output(t, ctx.TerratestTerraformOptions(), "name")
-	meshArn := terraform.Output(t, ctx.TerratestTerraformOptions(), "arn")
+	meshName := terraform.OutputContext(t, context.Background(), ctx.TerratestTerraformOptions(), "name")
+	meshArn := terraform.OutputContext(t, context.Background(), ctx.TerratestTerraformOptions(), "arn")
 
 	t.Run("TestDoesMeshExist", func(t *testing.T) {
 		output, err := appmeshClient.DescribeMesh(context.TODO(), &appmesh.DescribeMeshInput{MeshName: &meshName})
